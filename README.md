@@ -171,17 +171,20 @@ ECR public repos created
 ![alt text](image-1.png)
 
 ```
-aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/w4c5t7g4
+aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 367065853931.dkr.ecr.ap-south-1.amazonaws.com
 
-docker tag narsss1234/microservice-backend-hello:latest public.ecr.aws/w4c5t7g4/microservice-backend-hello:latest
+docker tag narsss1234/microservice-backend-hello:latest 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest
 
-docker push public.ecr.aws/w4c5t7g4/microservice-backend-hello:latest
+docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest
 
-docker tag narsss1234/microservice-backend-profile:latest public.ecr.aws/w4c5t7g4/microservice-backend-profile:latest
+docker tag narsss1234/microservice-backend-profile:latest 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest
 
-docker push public.ecr.aws/w4c5t7g4/microservice-backend-profile:latest
+docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest
 
-docker tag narsss1234/microservice-frontend:latest public.ecr.aws/w4c5t7g4/microservice-frontend:latest
+docker tag narsss1234/microservice-frontend:latest 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest
 
-docker push public.ecr.aws/w4c5t7g4/microservice-frontend:latest
+docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest
 ```
+
+Docker images have been pushed to ECR
+
