@@ -141,4 +141,4 @@ docker build -t narsss1234/microservice-frontend:latest .
 
 ### application tested locally
 
-![alt text](Application tested locally.png)
+![alt text](image.png)
