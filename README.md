@@ -142,3 +142,46 @@ docker build -t narsss1234/microservice-frontend:latest .
 ### application tested locally
 
 ![alt text](image.png)
+
+---------------------------------------
+
+2. Push Docker Images to Amazon ECR:
+
+   - Build Docker images for the frontend and backend.
+
+   - Create an Amazon ECR repository for each image.
+
+   - Push the Docker images to their respective ECR repositories.
+
+As the testing is complete lets push the image to dockerhub and also ECR
+
+```
+docker push narsss1234/microservice-backend-profile:latest
+
+docker push narsss1234/microservice-backend-hello:latest
+
+docker push narsss1234/microservice-frontend:latest
+```
+Logged into AWS console - navigated to ECR
+
+Created repos for each - backend 1,2 and frontend
+
+ECR public repos created
+
+![alt text](image-1.png)
+
+```
+aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/w4c5t7g4
+
+docker tag narsss1234/microservice-backend-hello:latest public.ecr.aws/w4c5t7g4/microservice-backend-hello:latest
+
+docker push public.ecr.aws/w4c5t7g4/microservice-backend-hello:latest
+
+docker tag narsss1234/microservice-backend-profile:latest public.ecr.aws/w4c5t7g4/microservice-backend-profile:latest
+
+docker push public.ecr.aws/w4c5t7g4/microservice-backend-profile:latest
+
+docker tag narsss1234/microservice-frontend:latest public.ecr.aws/w4c5t7g4/microservice-frontend:latest
+
+docker push public.ecr.aws/w4c5t7g4/microservice-frontend:latest
+```
