@@ -7,12 +7,9 @@ pipeline{
         stage('Lets configure AWS'){
             steps{
                 script{
-                    withCredentials([[
-                        $class: 'UsernamePasswordMultiBinding',
-                        credentialsId: 'aws',
-                        usernameVariable: 'AWS_ACCESS_KEY_ID',
-                        passwordVariable: 'AWS_SECRET_ACCESS_KEY'
-                        ]]) {
+                    withCredentials([
+                        usernamePassword(credentialsId: 'aws', usernameVariable: 'AWS_ACCESS_KEY_ID', passwordVariable: 'AWS_SECRET_ACCESS_KEY')
+                        ]) {
                             sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
                             sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
                             sh 'aws configure set region ap-south-1'
