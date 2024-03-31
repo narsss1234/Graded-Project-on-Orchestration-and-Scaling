@@ -243,12 +243,22 @@ ssh -T ssh://git-codecommit.ap-south-1.amazonaws.com
 
 ```
 
-6. Push the code to the code commit repo
+6. Change the push urls for the git - we will add both github and codecommit url here
 
 ```
-git clone ssh://git-codecommit.ap-south-1.amazonaws.com/v1/repos/Graded-Project-on-Orchestration-and-Scaling-Code-Commit
+git remote -v 
+-> this will show the github push and fetch url
 
-copy paste the code in the new directory
+git remote set-url --add --push ssh://git-codecommit.ap-south-1.amazonaws.com/v1/repos/Graded-Project-on-Orchestration-and-Scaling
+
+git remote -v 
+-> This will show the github fetch and codecommit push URLs
+
+# add the remote url for github
+
+git remote set-url --add --push https://github.com/CharismaticOwl/Graded-Project-on-Orchestration-and-Scaling.git
 
 git push
 ```
+
+### Now we have the code in both github as well as code commit
