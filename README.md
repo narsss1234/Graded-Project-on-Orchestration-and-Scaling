@@ -468,3 +468,13 @@ stage('Configure ECR and push the images'){
 ### This completes our codecommit, Jenkins, and ECR stiched.
 
 ### Now when there is an upadated code push, Jenkins should automatically create the Docker images and upload then to docker repo - AWS ECR
+
+Step 5: Infrastructure as Code (IaC) with Boto3
+
+1. Define Infrastructure with Boto3 (Python Script):
+
+   - Use Boto3 to define the infrastructure (VPC, subnets, security groups).
+
+   - Define an Auto Scaling Group (ASG) for the backend.
+
+   - Create AWS Lambda functions if needed.
