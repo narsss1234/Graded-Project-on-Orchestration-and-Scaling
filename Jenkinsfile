@@ -21,7 +21,7 @@ pipeline{
         stage('Fetch the code'){
             steps{
                 script{
-                    git branch: 'main', url: 'https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/Graded-Project-on-Orchestration-and-Scaling'
+                    git branch: 'main', url: 'ssh://git-codecommit.ap-south-1.amazonaws.com/v1/repos/Graded-Project-on-Orchestration-and-Scaling'
                 }
             }
         }
