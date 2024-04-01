@@ -39,7 +39,7 @@ pipeline{
         stage('Build the docker backend image 1'){
             steps{
                 script{
-                    sh 'cd backend && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest .'
+                    sh 'cd backend/helloService && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest .'
                 }
             }
         }
@@ -47,7 +47,7 @@ pipeline{
         stage('Build the docker backend image 2'){
             steps{
                 script{
-                    sh 'cd backend && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest .'
+                    sh 'cd backend/profileService && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest .'
                 }
             }
         }
