@@ -381,3 +381,90 @@ add a credential of kind AWS credentials
 
 Solution:
 
+1. Create Jenkinsfile
+
+```
+touch Jenkinfile
+```
+
+2. Uses agent any
+
+3. Stage one to configure awscli, so that we can access docker push commands 
+
+```
+stage('Configure AWS Credentials') {
+            steps {
+                withCredentials([[
+                    $class: 'AmazonWebServicesCredentialsBinding',
+                    accessKeyVariable: 'AWS_ACCESS_KEY_ID',
+                    secretKeyVariable: 'AWS_SECRET_ACCESS_KEY',
+                    credentialsId: 'aws' // Replace with your Jenkins credentials ID
+                ]]) {
+                    sh 'aws configure set aws_access_key_id $AWS_ACCESS_KEY_ID'
+                    sh 'aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY'
+                    sh 'aws configure set region ap-south-1'
+                }
+            }
+        }
+```
+4. Fetch the code using git plugin from thr codeCommit
+
+```
+stage('Fetch the code'){
+            steps{
+                script{
+                    git branch: 'main', url: 'ssh://git-codecommit.ap-south-1.amazonaws.com/v1/repos/Graded-Project-on-Orchestration-and-Scaling'
+                }
+            }
+        }
+```
+
+5. Docker build commands, to create the latest images.
+
+```
+Navigate to the floder and run docker build command
+
+stage('Build the docker backend image 1'){
+            steps{
+                script{
+                    sh 'cd backend/helloService && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest .'
+                }
+            }
+        }
+
+        stage('Build the docker backend image 2'){
+            steps{
+                script{
+                    sh 'cd backend/profileService && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest .'
+                }
+            }
+        }
+
+        stage('Build the docker frontend image'){
+            steps{
+                script{
+                    sh 'cd frontend && docker build -t 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest .'
+                }
+            }
+        }
+
+```
+
+6. First do a ECR login, so that docker daemon has access to the ECR to ush the images, and then run docker push commands to upload the images.
+
+```
+stage('Configure ECR and push the images'){
+            steps{
+                script{
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 367065853931.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest'
+                }
+            }
+        }
+```
+
+### This completes our codecommit, Jenkins, and ECR stiched.
+
+### Now when there is an upadated code push, Jenkins should automatically create the Docker images and upload then to docker repo - AWS ECR
