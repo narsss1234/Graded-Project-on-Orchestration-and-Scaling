@@ -262,3 +262,11 @@ git push
 ```
 
 ### Now we have the code in both github as well as code commit
+
+Step 4: Continuous Integration with Jenkins
+
+1. Set Up Jenkins:
+
+   - Install Jenkins on an EC2 instance.
+
+   - Configure Jenkins with necessary plugins.
