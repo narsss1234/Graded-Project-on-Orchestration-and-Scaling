@@ -59,5 +59,16 @@ pipeline{
                 }
             }
         }
+
+        stage('Configure ECR and push the images'){
+            steps{
+                script{
+                    sh 'aws ecr get-login-password --region ap-south-1 | docker login --username AWS --password-stdin 367065853931.dkr.ecr.ap-south-1.amazonaws.com'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest'
+                    sh 'docker push 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest'
+                }
+            }
+        }
     }
 }
