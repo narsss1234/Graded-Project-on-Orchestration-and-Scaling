@@ -7,7 +7,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4200/")
+      .get("http://backend-hello:4200/")
       .then((response) => {
         setMessage(response.data.msg);
       })
@@ -16,7 +16,7 @@ function Home() {
 
   useEffect(() => {
     axios
-      .get("http://localhost:4400/fetchUser")
+      .get("http://backend-profile:4400/fetchUser")
       .then((response) => {
         setProfile(response.data);
         

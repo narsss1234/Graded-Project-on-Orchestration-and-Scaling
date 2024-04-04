@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: backend-hello
-          image: 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-hello:latest
+          image: narsss1234/microservice-backend-hello:latest
           ports:
             - containerPort: 4200
               name: hello-port
@@ -41,7 +41,7 @@ spec:
     spec:
       containers:
         - name: backend-profile
-          image: 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-backend-profile:latest
+          image: narsss1234/microservice-backend-profile:latest
           ports:
             - containerPort: 4400
               name: profile-port
@@ -66,7 +66,8 @@ spec:
     spec:
       containers:
         - name: frontend
-          image: 367065853931.dkr.ecr.ap-south-1.amazonaws.com/microservice-frontend:latest
+          image: narsss1234/microservice-frontend:latest
           ports:
             - containerPort: 3000
               name: frontend-port
+          imagePullPolicy: Always

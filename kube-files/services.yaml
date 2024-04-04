@@ -8,8 +8,8 @@ spec:
   ports:
     - port: 4200
       name: hello
-      targetPort: 4200
-  type: ClusterIP
+      nodePort: 30010
+  type: NodePort
   
 ---
 
@@ -23,8 +23,8 @@ spec:
   ports:
     - port: 4400
       name: profile
-      targetPort: 4400
-  type: ClusterIP
+      nodePort: 30020
+  type: NodePort
 
 ---
 
