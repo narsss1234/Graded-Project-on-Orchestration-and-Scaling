@@ -73,10 +73,10 @@ def create_vpc_and_subnets():
             NatGatewayId=nat_gateway_id,
             RouteTableId=private_route_table_id
         )
-
+    )
     return vpc_id, public_subnet_ids
 
-def create_load_balancer_and_asg(vpc_id, public_subnet_ids):
+def create_load_balancer_and_asg(vpc_id, public_subnet_ids,security_group_id):
     # Create Load Balancer
     elb_response = elb_client.create_load_balancer(
         Name='MyLoadBalancer',
@@ -100,7 +100,7 @@ def create_load_balancer_and_asg(vpc_id, public_subnet_ids):
         MaxSize=3,
         DesiredCapacity=2,
         VPCZoneIdentifier=','.join(public_subnet_ids),
-        AvailabilityZones=['us-west-2a'],
+        AvailabilityZones=['ap-south-1a'],
         Tags=[
             {
                 'Key': 'Name',
