@@ -7,7 +7,6 @@ spec:
     app: backend-hello
   ports:
     - port: 4200
-      name: hello
       nodePort: 30010
   type: NodePort
   
@@ -22,7 +21,6 @@ spec:
     app: backend-profile
   ports:
     - port: 4400
-      name: profile
       nodePort: 30020
   type: NodePort
 
@@ -37,6 +35,5 @@ spec:
     app: frontend
   ports:
     - port: 3000
-      name: frontend
       targetPort: 3000
   type: LoadBalancer
