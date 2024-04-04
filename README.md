@@ -478,3 +478,22 @@ Step 5: Infrastructure as Code (IaC) with Boto3
    - Define an Auto Scaling Group (ASG) for the backend.
 
    - Create AWS Lambda functions if needed.
+
+   ### IaC using boto3 is work in progress, moving on with Step 10
+
+   ### Step 10: Kubernetes (EKS) Deployment
+
+
+   1. Create EKS Cluster:
+
+   - Use eksctl or other tools to create an Amazon EKS cluster.
+
+#   Solution - >
+
+1. Create a folder to store the workloads and the services manifest files
+
+
+
+2. Deploy Application with Helm:
+
+   - Use Helm to package and deploy the MERN application on EKS.
