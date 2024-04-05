@@ -1,0 +1,73 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-hello
+  labels:
+    app: backend-hello
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-hello
+  template:
+    metadata:
+      labels:
+        app: backend-hello
+    spec:
+      containers:
+        - name: backend-hello
+          image: narsss1234/microservice-backend-hello:latest
+          ports:
+            - containerPort: 4200
+              name: hello-port
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend-profile
+  labels:
+    app: backend-profile
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend-profile
+  template:
+    metadata:
+      labels:
+        app: backend-profile
+    spec:
+      containers:
+        - name: backend-profile
+          image: narsss1234/microservice-backend-profile:latest
+          ports:
+            - containerPort: 4400
+              name: profile-port
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: frontend
+          image: narsss1234/microservice-frontend:latest
+          ports:
+            - containerPort: 3000
+              name: frontend-port
+          imagePullPolicy: Always

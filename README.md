@@ -492,8 +492,32 @@ Step 5: Infrastructure as Code (IaC) with Boto3
 
 1. Create a folder to store the workloads and the services manifest files
 
+```
+mkdir kube-files
 
+cd kube-files
 
-2. Deploy Application with Helm:
+touch services.yaml
 
-   - Use Helm to package and deploy the MERN application on EKS.
+touch workloads.yaml
+```
+
+2. Create EKS cluster
+
+```
+eksctl create cluster --name assignment12 --region ap-south-1
+```
+
+    2. Deploy Application with Helm:
+
+    - Use Helm to package and deploy the MERN application on EKS.
+
+    ```
+Created a hlm directory
+
+create micro-helm
+    ```
+
+    -> Copy the workfloads and services manifest files to the templates folder in helm
+
+    Using the helm .Values, store all the re-occuring values to the values.yaml files -> this is in yaml format
