@@ -521,3 +521,5 @@ create micro-helm
     -> Copy the workfloads and services manifest files to the templates folder in helm
 
     Using the helm .Values, store all the re-occuring values to the values.yaml files -> this is in yaml format
+
+Helm successfully deployed
