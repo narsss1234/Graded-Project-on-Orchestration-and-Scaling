@@ -1,39 +1,39 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: backend-hello
+  name: {{ .Values.services.backendhello.name }}
 spec:
   selector:
-    app: backend-hello
+    app: {{ .Values.services.backendhello.workloadLabel }}
   ports:
-    - port: 4200
-      nodePort: 30010
-  type: NodePort
-  
----
-
-apiVersion: v1
-kind: Service
-metadata:
-  name: backend-profile
-spec:
-  selector:
-    app: backend-profile
-  ports:
-    - port: 4400
-      nodePort: 30020
-  type: NodePort
+    - port: {{ .Values.services.backendhello.port }}
+      nodePort: {{ .Values.services.backendhello.nodePort }}
+  type: {{ .Values.services.backendhello.type }}
 
 ---
 
 apiVersion: v1
 kind: Service
 metadata:
-  name: frontend
+  name: {{ .Values.services.backendprofile.name }}
 spec:
   selector:
-    app: frontend
+    app: {{ .Values.services.backendprofile.workloadLabel }}
   ports:
-    - port: 3000
-      targetPort: 3000
-  type: LoadBalancer
+    - port: {{ .Values.services.backendprofile.port }}
+      nodePort: {{ .Values.services.backendprofile.nodePort }}
+  type: {{ .Values.services.backendprofile.type }}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.services.frontend.name }}
+spec:
+  selector:
+    app: {{ .Values.services.frontend.workloadLabel }}
+  ports:
+    - port: {{ .Values.services.frontend.port }}
+      targetPort: {{ .Values.services.frontend.targetPort }}
+  type: {{ .Values.services.frontend.type }}

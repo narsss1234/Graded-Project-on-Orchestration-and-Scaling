@@ -1,73 +1,74 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-hello
+  name: {{ .Values.workloads.backendhello.name }}
   labels:
-    app: backend-hello
+    app: {{ .Values.workloads.backendhello.label }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.workloads.backendhello.replicas }}
   selector:
     matchLabels:
-      app: backend-hello
+      app: {{ .Values.workloads.backendhello.label }}
   template:
     metadata:
       labels:
-        app: backend-hello
+        app: {{ .Values.workloads.backendhello.label }}
     spec:
       containers:
-        - name: backend-hello
-          image: narsss1234/microservice-backend-hello:latest
+        - name: {{ .Values.workloads.backendhello.containerName }}
+          image: {{ .Values.workloads.backendhello.image }}
           ports:
-            - containerPort: 4200
-              name: hello-port
+            - containerPort: {{ .Values.workloads.backendhello.port }}
+              name: {{ .Values.workloads.backendhello.portName }}
+          imagePullPolicy: {{ .Values.workloads.backendhello.pullPolicy }}
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: backend-profile
+  name: {{ .Values.workloads.backendprofile.name }}
   labels:
-    app: backend-profile
+    app: {{ .Values.workloads.backendprofile.label }}
 spec:
-  replicas: 1
+  replicas: {{ .Values.workloads.backendprofile.replicas }}
   selector:
     matchLabels:
-      app: backend-profile
+      app: {{ .Values.workloads.backendprofile.label }}
   template:
     metadata:
       labels:
-        app: backend-profile
+        app: {{ .Values.workloads.backendprofile.label }}
     spec:
       containers:
-        - name: backend-profile
-          image: narsss1234/microservice-backend-profile:latest
+        - name: {{ .Values.workloads.backendprofile.containerName }}
+          image: {{ .Values.workloads.backendprofile.image }}
           ports:
-            - containerPort: 4400
-              name: profile-port
+            - containerPort: {{ .Values.workloads.backendprofile.port }}
+              name: {{ .Values.workloads.backendprofile.portName }}
 
 ---
 
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend
+  name: {{ .Values.workloads.frontend.name }}
   labels:
-    app: frontend
+    app: {{ .Values.workloads.frontend.label }}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: frontend
+      app: {{ .Values.workloads.frontend.label }}
   template:
     metadata:
       labels:
-        app: frontend
+        app: {{ .Values.workloads.frontend.label }}
     spec:
       containers:
-        - name: frontend
-          image: narsss1234/microservice-frontend:latest
+        - name: {{ .Values.workloads.frontend.containerName }}
+          image: {{ .Values.workloads.frontend.image }}
           ports:
-            - containerPort: 3000
-              name: frontend-port
-          imagePullPolicy: Always
+            - containerPort: {{ .Values.workloads.frontend.port }}
+              name: {{ .Values.workloads.frontend.portName }}
+          imagePullPolicy: {{ .Values.workloads.frontend.pullPolicy }}
