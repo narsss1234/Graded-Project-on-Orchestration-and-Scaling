@@ -73,7 +73,6 @@ def create_vpc_and_subnets():
             NatGatewayId=nat_gateway_id,
             RouteTableId=private_route_table_id
         )
-    )
     return vpc_id, public_subnet_ids
 
 def create_load_balancer_and_asg(vpc_id, public_subnet_ids,security_group_id):
@@ -111,7 +110,7 @@ def create_load_balancer_and_asg(vpc_id, public_subnet_ids,security_group_id):
 
     return elb_arn
 
-def configure_dns():
+def configure_dns(elb_arn):
     # Configure DNS using Route 53
     # Example: Create a hosted zone and add records
     hosted_zone_response = route53_client.create_hosted_zone(
@@ -143,7 +142,7 @@ def configure_dns():
 def main():
     vpc_id, public_subnet_ids = create_vpc_and_subnets()
     elb_arn = create_load_balancer_and_asg(vpc_id, public_subnet_ids)
-    configure_dns()
+    configure_dns(elb_arn)
 
 if __name__ == "__main__":
     main()

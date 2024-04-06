@@ -479,7 +479,7 @@ Step 5: Infrastructure as Code (IaC) with Boto3
 
    - Create AWS Lambda functions if needed.
 
-   ### IaC using boto3 is work in progress, moving on with Step 10
+
 
    ### Step 10: Kubernetes (EKS) Deployment
 
